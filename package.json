@@ -1,5 +1,5 @@
 {
-  "name": "@RENCI/APSViz-geostyler",
+  "name": "@renci/apsviz-geostyler",
   "version": "15.0.0",
   "description": "Framework for styling geodata",
   "main": "dist/index.js",
