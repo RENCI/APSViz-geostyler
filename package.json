@@ -1,5 +1,5 @@
 {
-  "name": "geostyler",
+  "name": "APSViz-geostyler",
   "version": "15.0.0",
   "description": "Framework for styling geodata",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geostyler/geostyler.git"
+    "url": "git+https://github.com/RENCI/APSViz-geostyler.git"
   },
   "keywords": [
     "geo",
@@ -19,7 +19,7 @@
   "author": "GeoStyler contributors",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/geostyler/geostyler/issues"
+    "url": "https://github.com/RENCI/APSViz-geostyler/issues"
   },
   "engines": {
     "node": ">=20.6.0"
@@ -30,7 +30,7 @@
     "Firefox ESR",
     "not ie < 9"
   ],
-  "homepage": "https://github.com/geostyler/geostyler",
+  "homepage": "https://github.com/RENCI/APSViz-geostyler",
   "scripts": {
     "build-package": "npm run build-browser && tsc && npm run build-dist",
     "build-dist": "tsc -p ./ && copyfiles \"./src/**/*.less\" dist --up 1",
@@ -143,7 +143,7 @@
     "terser-webpack-plugin": "^5.3.10",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.2",
-    "vite": "5.3.1",
+    "vite": "^4.4.0",
     "vitest": "^1.6.0",
     "whatwg-fetch": "^3.6.20"
   },
@@ -154,5 +154,8 @@
     "react": ">=16.x",
     "react-dom": ">=16.x"
   },
-  "funding": "https://opencollective.com/geostyler"
+  "funding": "https://opencollective.com/geostyler",
+  "publishConfig": {
+  "@RENCI:registry": "https://npm.pkg.github.com"
+}
 }
