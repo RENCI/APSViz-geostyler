@@ -1,0 +1,29 @@
+.string-expression-input {
+  display: flex;
+  align-items: center;
+
+  .gs-function-ui,
+  .ant-input {
+    flex: 1;
+  }
+
+  button.ant-btn {
+    display: none;
+    border-radius: 0 6px 6px 0;
+  }
+
+  &:hover {
+    button.ant-btn {
+      display: inline-block;
+    }
+
+    .ant-input-affix-wrapper,
+    .ant-input-group-addon {
+      border-radius: 0;
+    }
+    .ant-input {
+      border-radius: 6px 0 0 6px;
+    }
+  }
+
+}
