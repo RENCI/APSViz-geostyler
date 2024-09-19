@@ -312,11 +312,6 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   return (
     <div className="gs-colormap-symbolizer-editor" >
       <div className="gs-colormap-header-row">
-        <Form.Item
-          {...itemConfig}
-        >
-          <span>{locale.titleLabel}</span>
-        </Form.Item>
         {
           colorMapTypeField?.visibility === false ? null : (
             <Form.Item
