@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import {
   Form,
   //Table,
@@ -45,7 +45,7 @@ import { ColorMapTypeField } from '../Field/ColorMapTypeField/ColorMapTypeField'
 //import { ColorField } from '../Field/ColorField/ColorField';
 //import { OffsetField } from '../Field/OffsetField/OffsetField';
 //import { OpacityField } from '../Field/OpacityField/OpacityField';
-//import RasterUtil from '../../../Util/RasterUtil';
+import RasterUtil from '../../../Util/RasterUtil';
 import { ColorRampCombo } from '../../RuleGenerator/ColorRampCombo/ColorRampCombo';
 import RuleGeneratorUtil from '../../../Util/RuleGeneratorUtil';
 import { brewer } from 'chroma-js';
@@ -106,6 +106,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     colorMapTypeField,
     colorRampComboField,
     colorRamps = {
+      DefaultMaxWaterLevel: ['#313695', '#4E80B9', '#C0E3EF', '#FEECA2', '#F57A49', '#A50026'],
       GeoStyler: ['#E7000E', '#F48E00', '#FFED00', '#00943D', '#272C82', '#611E82'],
       GreenRed: ['#00FF00', '#FF0000'],
       ...brewer
@@ -149,8 +150,8 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
    *
    */
   //const onNrOfClassesChange = (value: number) => {
-  /*
-  const onNrOfClassesChange = (value: number) => {
+  const onNrOfClassesChange = (e: BaseSyntheticEvent) => {
+    const value = e.target.value;
     const cmEntries = colorMap?.colorMapEntries;
     const newCmEntries: ColorMapEntry[] = cmEntries ? _cloneDeep(cmEntries) : [];
 
@@ -166,7 +167,6 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     applyColors(colorRamp, newCmEntries);
     updateColorMap('colorMapEntries', newCmEntries);
   };
-  */
 
   const onColorRampChange = (newColorRamp: string) => {
     const cmEntries = colorMap?.colorMapEntries;
@@ -314,7 +314,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   if (!colorMapEntries) {
     colorMapEntries = [];
   }
- // const nrOfClasses = colorMapEntries.length;
+  const nrOfClasses = colorMapEntries.length;
 
   const colorMapType = isGeoStylerStringFunction(colorMap?.type)
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
@@ -346,16 +346,20 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
             >
               <Input
                 type="number"
+                value={nrOfClasses} 
                 className="number-of-classes-field"
-                defaultValue={nrOfClassesField?.default}
+                sx={{ width: 80 }}
+                //defaultValue={nrOfClassesField?.default}
                 slotProps={{
                   input: {
                     min: 1,
-                    max: 50,
+                    max: 75,
                   },
                 }}
-                onChange={(value) => {
-                  console.log(value);}}
+                onChange={onNrOfClassesChange}
+                onKeyDown={(event) => {
+                  event.preventDefault();
+                }}
               />
             </Form.Item>
           )

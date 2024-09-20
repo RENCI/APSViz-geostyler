@@ -72,7 +72,7 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     <Button
       key={mT}
       value={mT}
-    >mT</Button>
+    >{mT}</Button>
   ));
 
  /*  const onColorMapTypeChange = (event: RadioChangeEvent) => {
