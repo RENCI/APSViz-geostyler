@@ -28,15 +28,20 @@
 
 import React from 'react';
 
-import {
+/* import {
   Radio
-} from 'antd';
+} from 'antd'; */
+
+import {
+  ToggleButtonGroup,
+  Button
+} from '@mui/joy';
 
 import { ColorMapType } from 'geostyler-style';
-import { RadioChangeEvent } from 'antd/lib/radio';
+// import { RadioChangeEvent } from 'antd/lib/radio';
 
 import _get from 'lodash/get';
-import { useGeoStylerLocale } from '../../../../context/GeoStylerContext/GeoStylerContext';
+//import { useGeoStylerLocale } from '../../../../context/GeoStylerContext/GeoStylerContext';
 
 export interface ColorMapTypeFieldProps {
   colorMapTypeOptions?: ColorMapType[];
@@ -52,18 +57,32 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   onChange,
   colorMapType
 }) => {
+  console.log(colorMapType);
 
-  const locale = useGeoStylerLocale('ColorMapTypeField');
+  // const locale = useGeoStylerLocale('ColorMapTypeField');
 
-  const options = colorMapTypeOptions.map((mT: ColorMapType) => (
+  /* const options = colorMapTypeOptions.map((mT: ColorMapType) => (
     <Radio.Button
       key={mT}
       value={mT}
     >{_get(locale, `${mT}MapTypeLabel`)}</Radio.Button>
   ));
+ */
+  const options = colorMapTypeOptions.map((mT: ColorMapType) => (
+    <Button
+      key={mT}
+      value={mT}
+    >mT</Button>
+  ));
 
-  const onColorMapTypeChange = (event: RadioChangeEvent) => {
+ /*  const onColorMapTypeChange = (event: RadioChangeEvent) => {
     const newMapType = event.target.value;
+    if (onChange) {
+      onChange(newMapType);
+    }
+  }; */
+  const onColorMapTypeChange = (event: React.MouseEvent, value: any) => {
+    const newMapType = value;
     if (onChange) {
       onChange(newMapType);
     }
@@ -71,7 +90,16 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
 
   const mapType = colorMapType ? colorMapType : colorMapTypeOptions[0];
   return (
-    <Radio.Group
+    <ToggleButtonGroup
+      variant="soft"
+      value={mapType}
+      onChange={onColorMapTypeChange}
+    >
+      {options}
+    </ToggleButtonGroup>
+
+
+   /*  <Radio.Group
       className="color-map-type-field"
       defaultValue={mapType}
       buttonStyle="solid"
@@ -79,6 +107,6 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
       size="small"
     >
       {options}
-    </Radio.Group>
+    </Radio.Group> */
   );
 };

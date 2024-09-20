@@ -29,19 +29,23 @@
 import React, { useState } from 'react';
 import {
   Form,
-  Table,
-  Input,
-  Popover,
-  InputNumber
+  //Table,
+  //Input,
+  //Popover,
+  //InputNumber
 } from 'antd';
 
-import { ColorMap, ColorMapType, ColorMapEntry, isGeoStylerStringFunction, Expression } from 'geostyler-style';
-import { ExtendedField } from '../Field/ExtendedField/ExtendedField';
+import {
+  Input
+} from '@mui/joy';
+
+import { ColorMap, ColorMapType, ColorMapEntry, isGeoStylerStringFunction } from 'geostyler-style';
+//import { ExtendedField } from '../Field/ExtendedField/ExtendedField';
 import { ColorMapTypeField } from '../Field/ColorMapTypeField/ColorMapTypeField';
-import { ColorField } from '../Field/ColorField/ColorField';
-import { OffsetField } from '../Field/OffsetField/OffsetField';
-import { OpacityField } from '../Field/OpacityField/OpacityField';
-import RasterUtil from '../../../Util/RasterUtil';
+//import { ColorField } from '../Field/ColorField/ColorField';
+//import { OffsetField } from '../Field/OffsetField/OffsetField';
+//import { OpacityField } from '../Field/OpacityField/OpacityField';
+//import RasterUtil from '../../../Util/RasterUtil';
 import { ColorRampCombo } from '../../RuleGenerator/ColorRampCombo/ColorRampCombo';
 import RuleGeneratorUtil from '../../../Util/RuleGeneratorUtil';
 import { brewer } from 'chroma-js';
@@ -98,7 +102,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   const composed = { ...props, ...composition };
   const {
     colorMap,
-    colorMapTable,
+   // colorMapTable,
     colorMapTypeField,
     colorRampComboField,
     colorRamps = {
@@ -106,7 +110,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
       GreenRed: ['#00FF00', '#FF0000'],
       ...brewer
     },
-    extendedField,
+    //extendedField,
     nrOfClassesField,
     onChange
   } = composed;
@@ -131,9 +135,9 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     }
   };
 
-  const onExtendedChange = (extended: boolean) => {
+  /* const onExtendedChange = (extended: boolean) => {
     updateColorMap('extended', extended);
-  };
+  }; */
 
   const onTypeChange = (type: ColorMapType) => {
     updateColorMap('type', type);
@@ -144,6 +148,8 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
    * number of classes. Table will be updated accordingly.
    *
    */
+  //const onNrOfClassesChange = (value: number) => {
+  /*
   const onNrOfClassesChange = (value: number) => {
     const cmEntries = colorMap?.colorMapEntries;
     const newCmEntries: ColorMapEntry[] = cmEntries ? _cloneDeep(cmEntries) : [];
@@ -160,6 +166,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     applyColors(colorRamp, newCmEntries);
     updateColorMap('colorMapEntries', newCmEntries);
   };
+  */
 
   const onColorRampChange = (newColorRamp: string) => {
     const cmEntries = colorMap?.colorMapEntries;
@@ -188,7 +195,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
    * Updates property 'key' with 'value' of colorMapEntry at position 'index'.
    * Creates a new colorMapEntry if it did not exist yet.
    */
-  const setValueForColorMapEntry = (idx: number, key: string, value: any) => {
+ /*  const setValueForColorMapEntry = (idx: number, key: string, value: any) => {
     const cmEntries = colorMap?.colorMapEntries;
     let newCmEntries: ColorMapEntry[];
     if (cmEntries) {
@@ -199,18 +206,20 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
       newCmEntries[0][key as keyof ColorMapEntry] = value;
     }
     updateColorMap('colorMapEntries', newCmEntries);
-  };
+  }; */
 
+  /*
   const colorMapRecords = colorMap?.colorMapEntries?.map((entry: ColorMapEntry, index: number): ColorMapEntryRecord => {
     return {
       key: index,
       ...entry
     };
   });
+  */
 
   /**
    * Renderer method for the label column.
-   */
+
   const labelRenderer = (text: string, record: ColorMapEntryRecord) => {
     const input = (
       <Input
@@ -230,10 +239,11 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
       </Popover>
     );
   };
+  */
 
   /**
    * Renderer method for the color column.
-   */
+
   const colorRenderer = (text: string, record: ColorMapEntryRecord) => {
     const input = (
       <ColorField
@@ -245,10 +255,11 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     );
     return input;
   };
+  */
 
   /**
    * Renderer method for the quantity column.
-   */
+  
   const quantityRenderer = (text: string, record: ColorMapEntryRecord) => {
     const input = (
       <OffsetField
@@ -261,10 +272,11 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     );
     return input;
   };
+   */
 
   /**
    * Renderer method for the opacity column.
-   */
+  
   const opacityRenderer = (text: string, record: ColorMapEntryRecord) => {
     const input = (
       <OpacityField
@@ -277,8 +289,9 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     );
     return input;
   };
+   */
 
-  const columns: any = [{
+  /* const columns: any = [{
     title: locale.colorLabel,
     dataIndex: 'color',
     render: colorRenderer
@@ -294,14 +307,14 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     title: locale.opacityLabel,
     dataIndex: 'opacity',
     render: opacityRenderer
-  }];
+  }]; */
 
   // make sure colorMapEntries does exist
   let colorMapEntries: ColorMapEntry[] = colorMap?.colorMapEntries;
   if (!colorMapEntries) {
     colorMapEntries = [];
   }
-  const nrOfClasses = colorMapEntries.length;
+ // const nrOfClasses = colorMapEntries.length;
 
   const colorMapType = isGeoStylerStringFunction(colorMap?.type)
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
@@ -329,15 +342,20 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
           nrOfClassesField?.visibility === false ? null : (
             <Form.Item
               {...itemConfig}
-              label={locale.nrOfClassesLabel}
+              label="Number of classes"
             >
-              <InputNumber
+              <Input
+                type="number"
                 className="number-of-classes-field"
-                min={0}
-                max={255}
-                value={nrOfClasses}
-                onChange={onNrOfClassesChange}
                 defaultValue={nrOfClassesField?.default}
+                slotProps={{
+                  input: {
+                    min: 1,
+                    max: 50,
+                  },
+                }}
+                onChange={(value) => {
+                  console.log(value);}}
               />
             </Form.Item>
           )
@@ -356,33 +374,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
             </Form.Item>
           )
         }
-        {
-          extendedField?.visibility === false ? null : (
-            <Form.Item
-              {...itemConfig}
-              label={locale.extendedLabel}
-            >
-              <ExtendedField
-                extended={colorMap?.extended as boolean}
-                onChange={onExtendedChange}
-              />
-            </Form.Item>
-          )
-        }
       </div>
-      {
-        colorMapTable?.visibility === false ? null : (
-          <Table
-            className="gs-colormap-table"
-            columns={columns}
-            dataSource={colorMapRecords}
-            pagination={{
-              position: ['bottomCenter']
-            }}
-            size="small"
-          />
-        )
-      }
     </div>
   );
 };
