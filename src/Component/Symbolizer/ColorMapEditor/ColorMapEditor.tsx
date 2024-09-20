@@ -36,7 +36,8 @@ import {
 } from 'antd';
 
 import {
-  Input
+  Input,
+  Typography,
 } from '@mui/joy';
 
 import { ColorMap, ColorMapType, ColorMapEntry, isGeoStylerStringFunction } from 'geostyler-style';
@@ -57,7 +58,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 import {
   InputConfig,
   useGeoStylerComposition,
-  useGeoStylerLocale
+  //useGeoStylerLocale
 } from '../../../context/GeoStylerContext/GeoStylerContext';
 import FunctionUtil from '../../../Util/FunctionUtil';
 import { getFormItemConfig } from '../../../Util/FormItemUtil';
@@ -106,7 +107,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     colorMapTypeField,
     colorRampComboField,
     colorRamps = {
-      DefaultMaxWaterLevel: ['#313695', '#4E80B9', '#C0E3EF', '#FEECA2', '#F57A49', '#A50026'],
+      DefaultMaxWaterLevel: ['#313695', '#323C98', '#4E80B9', '#84BAD8', '#C0E3EF', '#EFF9DB', '#FEECA2', '#FDBD6F', '#F57A49', '#D93629', '#A50026'],
       GeoStyler: ['#E7000E', '#F48E00', '#FFED00', '#00943D', '#272C82', '#611E82'],
       GreenRed: ['#00FF00', '#FF0000'],
       ...brewer
@@ -116,7 +117,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     onChange
   } = composed;
 
-  const locale = useGeoStylerLocale('ColorMapEditor');
+  //const locale = useGeoStylerLocale('ColorMapEditor');
 
   // TODO add colorRamp to CompositionContext
   const [colorRamp, setColorRamp] = useState<string>(Object.keys(colorRamps)[0]);
@@ -168,7 +169,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     updateColorMap('colorMapEntries', newCmEntries);
   };
 
-  const onColorRampChange = (newColorRamp: string) => {
+  const onColorRampChange = (e: BaseSyntheticEvent, newColorRamp: string) => {
     const cmEntries = colorMap?.colorMapEntries;
     const newCmEntries = applyColors(newColorRamp, _cloneDeep(cmEntries));
     updateColorMap('colorMapEntries', newCmEntries);
@@ -329,8 +330,9 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
           colorMapTypeField?.visibility === false ? null : (
             <Form.Item
               {...itemConfig}
-              label={locale.typeLabel}
+              //label={locale.typeLabel}
             >
+              <Typography mb={2} level="title-md">Type</Typography>
               <ColorMapTypeField
                 colorMapType={colorMapType}
                 onChange={onTypeChange}
@@ -342,18 +344,19 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
           nrOfClassesField?.visibility === false ? null : (
             <Form.Item
               {...itemConfig}
-              label="Number of classes"
+              //label="Number of classes"
             >
+              <Typography mb={2} level="title-md">Number of classes</Typography>
               <Input
                 type="number"
-                value={nrOfClasses} 
+                defaultValue={nrOfClasses} 
                 className="number-of-classes-field"
                 sx={{ width: 80 }}
                 //defaultValue={nrOfClassesField?.default}
                 slotProps={{
                   input: {
                     min: 1,
-                    max: 75,
+                    max: 50,
                   },
                 }}
                 onChange={onNrOfClassesChange}
@@ -368,8 +371,9 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
           colorRampComboField?.visibility === false ? null : (
             <Form.Item
               {...itemConfig}
-              label={locale.colorRampLabel}
+              //label={locale.colorRampLabel}
             >
+              <Typography mb={2} level="title-md">Color Ramp</Typography>
               <ColorRampCombo
                 onChange={onColorRampChange}
                 colorRamp={colorRamp}

@@ -26,13 +26,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import React, { BaseSyntheticEvent } from 'react';
 
 import './ColorRampCombo.less';
 
 import { brewer } from 'chroma-js';
 
-import { Select } from 'antd';
+//import { Select } from 'antd';
+import { Select, Option } from '@mui/joy';
 
 import RuleGeneratorUtil from '../../../Util/RuleGeneratorUtil';
 
@@ -45,7 +46,7 @@ export interface ColorRampComboProps {
     [name: string]: string[];
   };
   /** The callback method that is triggered when the state changes */
-  onChange?: (colorRamp: string) => void;
+  onChange?: (e: BaseSyntheticEvent, colorRamp: string) => void;
   /** The selected color ramp */
   colorRamp?: string;
 }
@@ -70,14 +71,14 @@ export const ColorRampCombo: React.FC<ColorRampComboProps> = ({
       const colors = colorRamps[name];
       const style = RuleGeneratorUtil.generateBackgroundStyleFromColors(colors);
       return (
-        <Select.Option
+        <Option
           className="gs-color-ramp-option"
           key={name}
           value={name}
           style={style}
         >
           {name}
-        </Select.Option>
+        </Option>
       );
     });
 
@@ -93,7 +94,7 @@ export const ColorRampCombo: React.FC<ColorRampComboProps> = ({
       className="gs-color-ramp-select"
       style={colorRampStyle}
       placeholder={locale.colorRampPlaceholder}
-      optionFilterProp="children"
+      //optionFilterProp="children"
       value={colorRamp}
       onChange={onChange}
     >

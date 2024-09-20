@@ -57,7 +57,6 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   onChange,
   colorMapType
 }) => {
-  console.log(colorMapType);
 
   // const locale = useGeoStylerLocale('ColorMapTypeField');
 

@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
+import React, { useState, BaseSyntheticEvent } from 'react';
 import { Rule, SymbolizerKind, WellKnownName } from 'geostyler-style';
 import { VectorData } from 'geostyler-data';
 import { Radio, Form, Button, InputNumber, Tooltip } from 'antd';
@@ -101,6 +101,10 @@ export const RuleGenerator: React.FC<RuleGeneratorProps> = (props) => {
   const [attributeName, setAttributeName] = useState<string>();
   const [classificationMethod, setClassificationMethod] = useState<ClassificationMethod>();
   const [levelOfMeasurement, setLevelOfMeasurement] = useState<LevelOfMeasurement>();
+
+  const handleSetColorRamp = (e: BaseSyntheticEvent, val: string) => {
+    setColorRamp(val);
+  }
 
   const onAttributeChange = (newAttributeName: string) => {
     try {
@@ -287,7 +291,7 @@ export const RuleGenerator: React.FC<RuleGeneratorProps> = (props) => {
           <ColorRampCombo
             colorRamps={colorRamps}
             colorRamp={colorRamp}
-            onChange={setColorRamp}
+            onChange={handleSetColorRamp}
           />
         </Form.Item>
         {colorSpaces.length > 0 ?
