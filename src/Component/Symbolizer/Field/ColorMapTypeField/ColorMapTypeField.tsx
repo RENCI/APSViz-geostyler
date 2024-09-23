@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 /* import {
   Radio
@@ -58,6 +58,8 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   colorMapType
 }) => {
 
+  const [mapType, setMapType] = useState<string | null>(colorMapTypeOptions[0]);
+
   // const locale = useGeoStylerLocale('ColorMapTypeField');
 
   /* const options = colorMapTypeOptions.map((mT: ColorMapType) => (
@@ -87,12 +89,15 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     }
   };
 
-  const mapType = colorMapType ? colorMapType : colorMapTypeOptions[0];
+  //const mapType = colorMapType ? colorMapType : colorMapTypeOptions[0];
   return (
     <ToggleButtonGroup
       variant="soft"
       value={mapType}
-      onChange={onColorMapTypeChange}
+      onChange={(event, newValue) => {
+        setMapType(newValue);
+        onColorMapTypeChange(event, newValue);
+      }}
     >
       {options}
     </ToggleButtonGroup>

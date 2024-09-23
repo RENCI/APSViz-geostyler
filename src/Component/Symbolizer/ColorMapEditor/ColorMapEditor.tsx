@@ -121,6 +121,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
 
   // TODO add colorRamp to CompositionContext
   const [colorRamp, setColorRamp] = useState<string>(Object.keys(colorRamps)[0]);
+  const [nrOfClasses, setNrOfClasses] = useState(0);
 
   const updateColorMap = (prop: string, value: any) => {
     let newColorMap: ColorMap;
@@ -315,7 +316,8 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   if (!colorMapEntries) {
     colorMapEntries = [];
   }
-  const nrOfClasses = colorMapEntries.length;
+  //const nrOfClasses = colorMapEntries.length;
+  setNrOfClasses(colorMapEntries.length);
 
   const colorMapType = isGeoStylerStringFunction(colorMap?.type)
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
@@ -332,7 +334,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
               {...itemConfig}
               //label={locale.typeLabel}
             >
-              <Typography mb={2} level="title-md">Type</Typography>
+              <Typography mb={2} level="title-md">Colormap Type</Typography>
               <ColorMapTypeField
                 colorMapType={colorMapType}
                 onChange={onTypeChange}
@@ -349,7 +351,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
               <Typography mb={2} level="title-md">Number of classes</Typography>
               <Input
                 type="number"
-                defaultValue={nrOfClasses} 
+                value={nrOfClasses} 
                 className="number-of-classes-field"
                 sx={{ width: 80 }}
                 //defaultValue={nrOfClassesField?.default}
