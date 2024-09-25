@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 /* import {
   Radio
@@ -58,8 +58,6 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   colorMapType
 }) => {
 
-  const [mapType, setMapType] = useState<string | null>(colorMapTypeOptions[0]);
-
   // const locale = useGeoStylerLocale('ColorMapTypeField');
 
   /* const options = colorMapTypeOptions.map((mT: ColorMapType) => (
@@ -68,7 +66,7 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
       value={mT}
     >{_get(locale, `${mT}MapTypeLabel`)}</Radio.Button>
   ));
- */
+  */
   const options = colorMapTypeOptions.map((mT: ColorMapType) => (
     <Button
       key={mT}
@@ -76,12 +74,14 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     >{mT}</Button>
   ));
 
- /*  const onColorMapTypeChange = (event: RadioChangeEvent) => {
+  /*  
+  const onColorMapTypeChange = (event: RadioChangeEvent) => {
     const newMapType = event.target.value;
     if (onChange) {
       onChange(newMapType);
     }
-  }; */
+  };
+  */
   const onColorMapTypeChange = (event: React.MouseEvent, value: any) => {
     const newMapType = value;
     if (onChange) {
@@ -89,15 +89,12 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     }
   };
 
-  //const mapType = colorMapType ? colorMapType : colorMapTypeOptions[0];
+  const mapType = colorMapType ? colorMapType : colorMapTypeOptions[0];
   return (
     <ToggleButtonGroup
       variant="soft"
       value={mapType}
-      onChange={(event, newValue) => {
-        setMapType(newValue);
-        onColorMapTypeChange(event, newValue);
-      }}
+      onChange={onColorMapTypeChange}
     >
       {options}
     </ToggleButtonGroup>
