@@ -66,7 +66,7 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
       value={mT}
     >{_get(locale, `${mT}MapTypeLabel`)}</Radio.Button>
   ));
-  */
+ */
   const options = colorMapTypeOptions.map((mT: ColorMapType) => (
     <Button
       key={mT}
@@ -74,14 +74,12 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     >{mT}</Button>
   ));
 
-  /*  
-  const onColorMapTypeChange = (event: RadioChangeEvent) => {
+ /*  const onColorMapTypeChange = (event: RadioChangeEvent) => {
     const newMapType = event.target.value;
     if (onChange) {
       onChange(newMapType);
     }
-  };
-  */
+  }; */
   const onColorMapTypeChange = (event: React.MouseEvent, value: any) => {
     const newMapType = value;
     if (onChange) {
