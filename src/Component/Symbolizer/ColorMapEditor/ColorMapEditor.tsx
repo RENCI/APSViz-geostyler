@@ -315,7 +315,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   if (!colorMapEntries) {
     colorMapEntries = [];
   }
-  const nrOfClasses = colorMapEntries.length;
+  //const nrOfClasses = colorMapEntries.length;
 
   const colorMapType = isGeoStylerStringFunction(colorMap?.type)
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
@@ -349,7 +349,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
               <Typography mb={2} level="title-md">Number of classes</Typography>
               <Input
                 type="number"
-                defaultValue={nrOfClasses} 
+                value={colorMap.colorMapEntries.length} 
                 className="number-of-classes-field"
                 sx={{ width: 80 }}
                 //defaultValue={nrOfClassesField?.default}
