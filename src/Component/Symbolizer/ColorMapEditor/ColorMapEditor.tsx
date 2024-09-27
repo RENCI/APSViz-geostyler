@@ -133,8 +133,12 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     return Object.keys(colorRamps).find(key => JSON.stringify(colorRamps[key]) === JSON.stringify(colorList));
   };
 
+  // set the colorRamp to the one used in the current colormap
   // TODO add colorRamp to CompositionContext
-  const [colorRamp, setColorRamp] = useState<string>(Object.keys(colorRamps)[0]);
+  let rampName = getColormapColorRampName();
+  const initalValue = rampName? rampName : Object.keys(colorRamps)[0]
+
+  const [colorRamp, setColorRamp] = useState<string>(initalValue);
 
   const updateColorMap = (prop: string, value: any) => {
     let newColorMap: ColorMap;
@@ -334,14 +338,6 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   const colorMapType = isGeoStylerStringFunction(colorMap?.type)
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
     : colorMap?.type;
-
-  // set the colorRamp to the one used in the current colormap
-  if (colorMap) {
-    const name = getColormapColorRampName();
-    if (name) {
-      setColorRamp(name);
-    }
-  }
 
   const itemConfig = getFormItemConfig();
 
