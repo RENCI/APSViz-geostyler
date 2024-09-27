@@ -136,9 +136,10 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   // set the colorRamp to the one used in the current colormap
   // TODO add colorRamp to CompositionContext
   let rampName = getColormapColorRampName();
-  const initalValue = rampName? rampName : Object.keys(colorRamps)[0]
+  const initialValue = rampName? rampName : Object.keys(colorRamps)[0]
 
-  const [colorRamp, setColorRamp] = useState<string>(initalValue);
+  //const [colorRamp, setColorRamp] = useState<string>(initalValue);
+  let colorRamp = initialValue;
 
   const updateColorMap = (prop: string, value: any) => {
     let newColorMap: ColorMap;
@@ -191,7 +192,10 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     const cmEntries = colorMap?.colorMapEntries;
     const newCmEntries = applyColors(newColorRamp, _cloneDeep(cmEntries));
     updateColorMap('colorMapEntries', newCmEntries);
-    setColorRamp(newColorRamp);
+    //setColorRamp(newColorRamp);
+    // make a copy of the color ramp name
+    colorRamp = newColorRamp.substring(0, newColorRamp.length);
+
   };
 
   /**
