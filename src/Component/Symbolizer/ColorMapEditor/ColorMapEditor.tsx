@@ -108,6 +108,8 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     colorRampComboField,
     colorRamps = {
       DefaultMaxWaterLevel: ['#313695', '#323C98', '#4E80B9', '#84BAD8', '#C0E3EF', '#EFF9DB', '#FEECA2', '#FDBD6F', '#F57A49', '#D93629', '#A50026'],
+      DefaultMaxWindVelocity: ['#3E26A9', '#4433CD', '#4743E8', '#4755F6', '#4367FE', '#337AFD', '#2D8CF4', '#259CE8', '#1BAADF', '#04B6CE', '#12BEB9', '#2FC5A2', '#47CB86', '#71CD64', '#9FC941', '#C9C128', '#EBBB30', '#FFC13A', '#FBD42E', '#F5E824', '#FAFB14'],
+      DefaultMaxSignificantWaveHeight: ['#30123B', '#3D3790', '#455ACD', '#467BF3', '#3E9BFF', '#28BBEC', '#18D7CC', '#21EBAC', '#46F884', '#78FF5A', '#A3FD3C', '#C4F133', '#E2DD37', '#F6C33A', '#FEA531', '#FC8021', '#F05B11', '#DE3D08', '#C42502', '#A31201', '#7A0402'],
       GeoStyler: ['#E7000E', '#F48E00', '#FFED00', '#00943D', '#272C82', '#611E82'],
       GreenRed: ['#00FF00', '#FF0000'],
       ...brewer
@@ -118,6 +120,18 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
   } = composed;
 
   //const locale = useGeoStylerLocale('ColorMapEditor');
+
+  const getColormapColorRampName = () => {
+    // extract array of colors from the colormap
+    const colorList = colorMap.colorMapEntries.map((entry) => {
+      return (
+        entry.color
+      )
+    });
+
+    // now find this color ramp in the list of color ramps to get the name
+    return Object.keys(colorRamps).find(key => JSON.stringify(colorRamps[key]) === JSON.stringify(colorList));
+  };
 
   // TODO add colorRamp to CompositionContext
   const [colorRamp, setColorRamp] = useState<string>(Object.keys(colorRamps)[0]);
@@ -321,6 +335,14 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     ? FunctionUtil.evaluateFunction(colorMap?.type) as ColorMapType
     : colorMap?.type;
 
+  // set the colorRamp to the one used in the current colormap
+  if (colorMap) {
+    const name = getColormapColorRampName();
+    if (name) {
+      setColorRamp(name);
+    }
+  }
+
   const itemConfig = getFormItemConfig();
 
   return (
@@ -346,7 +368,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
               {...itemConfig}
               //label="Number of classes"
             >
-              <Typography mb={2} level="title-md">Number of classes</Typography>
+              <Typography mb={2} level="title-md">Number of Classes</Typography>
               <Input
                 type="number"
                 value={colorMap.colorMapEntries.length} 
