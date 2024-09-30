@@ -121,16 +121,30 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
 
   //const locale = useGeoStylerLocale('ColorMapEditor');
 
+  // Note that color ramps defined in the current colormap, may be
+  // modified versions of the original list of colors, because the
+  // user my have modified the number of intervals.
+  // However the first and last color in the list should alsways
+  // remain the same. I will depend on that fact to find the color
+  // ramp name.
   const getColormapColorRampName = () => {
     // extract array of colors from the colormap
     const colorList = colorMap.colorMapEntries.map((entry) => {
       return (
-        entry.color
+        entry.color.toString()
       )
     });
 
-    // now find this color ramp in the list of color ramps to get the name
-    return Object.keys(colorRamps).find(key => JSON.stringify(colorRamps[key]) === JSON.stringify(colorList));
+    // now find this color ramp by match the first and last values of the
+    // colors in the color ramp  
+    let rampName; 
+    for (const [key, value] of Object.entries(colorRamps)) {
+      if ((value[0].toUpperCase() === colorList[0].toUpperCase()) && (value[value.length-1].toUpperCase() === colorList[colorList.length-1].toUpperCase())) {
+        rampName = key;
+        break;
+      }
+      return(rampName);
+    };
   };
 
   // set the colorRamp to the one used in the current colormap
