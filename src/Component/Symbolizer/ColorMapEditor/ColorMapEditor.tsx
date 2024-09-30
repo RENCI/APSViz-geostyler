@@ -136,24 +136,24 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     });
 
     // now find this color ramp by match the first and last values of the
-    // colors in the color ramp  
-    let rampName; 
+    // colors in the color ramp
+    // defualt to first ramp in the list
+    let rampName = Object.keys(colorRamps)[0]; 
     for (const [key, value] of Object.entries(colorRamps)) {
       if ((value[0].toUpperCase() === colorList[0].toUpperCase()) && (value[value.length-1].toUpperCase() === colorList[colorList.length-1].toUpperCase())) {
         rampName = key;
         break;
       }
-      return(rampName);
     };
+    return(rampName);
   };
 
   // set the colorRamp to the one used in the current colormap
   // TODO add colorRamp to CompositionContext
-  let rampName = getColormapColorRampName();
-  const initialValue = rampName? rampName : Object.keys(colorRamps)[0]
+  const colorRamp = getColormapColorRampName();
 
   //const [colorRamp, setColorRamp] = useState<string>(initalValue);
-  let colorRamp = initialValue;
+  //let colorRamp = initialValue;
 
   const updateColorMap = (prop: string, value: any) => {
     let newColorMap: ColorMap;
