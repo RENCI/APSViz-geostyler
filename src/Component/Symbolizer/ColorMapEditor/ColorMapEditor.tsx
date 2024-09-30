@@ -208,7 +208,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
     updateColorMap('colorMapEntries', newCmEntries);
     //setColorRamp(newColorRamp);
     // make a copy of the color ramp name
-    colorRamp = newColorRamp.substring(0, newColorRamp.length);
+    //colorRamp = newColorRamp.substring(0, newColorRamp.length);
 
   };
 
