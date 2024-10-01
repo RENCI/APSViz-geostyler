@@ -34,7 +34,8 @@ import React from 'react';
 
 import {
   ToggleButtonGroup,
-  Button
+  Button,
+  Tooltip
 } from '@mui/joy';
 
 import { ColorMapType } from 'geostyler-style';
@@ -58,6 +59,13 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   colorMapType
 }) => {
 
+  // add a tooltip for each colorMapTypeOption
+  const colorMapTypeToolTips = {
+    "ramp": "Colors are interpolated for values between the color map intervals",
+    "intervals": "Each interval defined by two entries is rendered using the color of the first (lowest-value) entry. No color interpolation is applied across the intervals",
+    "values": "Only pixels with the specified entry quantity values are rendered. Pixels with other values are not rendered."
+  };
+
   // const locale = useGeoStylerLocale('ColorMapTypeField');
 
   /* const options = colorMapTypeOptions.map((mT: ColorMapType) => (
@@ -67,11 +75,13 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
     >{_get(locale, `${mT}MapTypeLabel`)}</Radio.Button>
   ));
  */
-  const options = colorMapTypeOptions.map((mT: ColorMapType) => (
+  const options = colorMapTypeOptions.map((mT: ColorMapType, index: number) => (
+    <Tooltip key={Math.random() + index} title={colorMapTypeToolTips[mT]}>
     <Button
       key={mT}
       value={mT}
     >{mT}</Button>
+    </Tooltip>
   ));
 
  /*  const onColorMapTypeChange = (event: RadioChangeEvent) => {
