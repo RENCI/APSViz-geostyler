@@ -61,9 +61,9 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
 
   // add a tooltip for each colorMapTypeOption
   const colorMapTypeToolTips = {
-    "ramp": "Colors are interpolated for values between the color map intervals",
-    "intervals": "Each interval defined by two entries is rendered using the color of the first (lowest-value) entry. No color interpolation is applied across the intervals",
-    "values": "Only pixels with the specified entry quantity values are rendered. Pixels with other values are not rendered."
+    "ramp": "colors interpolated between intervals",
+    "intervals": "no color interpolation between intervals",
+    "values": "only exact quantity values rendered"
   };
 
   // const locale = useGeoStylerLocale('ColorMapTypeField');
