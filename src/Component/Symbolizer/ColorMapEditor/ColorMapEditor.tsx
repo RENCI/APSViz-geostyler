@@ -391,7 +391,7 @@ export const ColorMapEditor: React.FC<ColorMapEditorProps> = (props) => {
                 //defaultValue={nrOfClassesField?.default}
                 slotProps={{
                   input: {
-                    min: 1,
+                    min: 2,
                     max: 50,
                   },
                 }}
