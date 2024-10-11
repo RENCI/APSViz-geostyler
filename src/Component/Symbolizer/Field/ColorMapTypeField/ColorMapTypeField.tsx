@@ -38,12 +38,11 @@ import {
   Tooltip
 } from '@mui/joy';
 
-//import { ColorMapType } from 'geostyler-style';
+import { ColorMapType } from 'geostyler-style';
 // import { RadioChangeEvent } from 'antd/lib/radio';
 
 import _get from 'lodash/get';
 //import { useGeoStylerLocale } from '../../../../context/GeoStylerContext/GeoStylerContext';
-type ColorMapType = 'ramp' | 'intervals';
 
 export interface ColorMapTypeFieldProps {
   colorMapTypeOptions?: ColorMapType[];
@@ -63,7 +62,8 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   // add a tooltip for each colorMapTypeOption
   const colorMapTypeToolTips = {
     "ramp": "colors interpolated between intervals",
-    "intervals": "no color interpolation between intervals"
+    "intervals": "no color interpolation between intervals",
+    "values": ""
   };
 
   // const locale = useGeoStylerLocale('ColorMapTypeField');
