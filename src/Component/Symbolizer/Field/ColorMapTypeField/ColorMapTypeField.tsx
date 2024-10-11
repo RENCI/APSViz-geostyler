@@ -54,7 +54,7 @@ export interface ColorMapTypeFieldProps {
  * ColorMapTypeField to select between different colormap options
  */
 export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
-  colorMapTypeOptions = ['ramp', 'intervals', 'values'],
+  colorMapTypeOptions = ['ramp', 'intervals'],
   onChange,
   colorMapType
 }) => {
@@ -63,7 +63,6 @@ export const ColorMapTypeField: React.FC<ColorMapTypeFieldProps> = ({
   const colorMapTypeToolTips = {
     "ramp": "colors interpolated between intervals",
     "intervals": "no color interpolation between intervals",
-    "values": "only exact quantity values rendered"
   };
 
   // const locale = useGeoStylerLocale('ColorMapTypeField');
