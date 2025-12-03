@@ -1,6 +1,6 @@
 {
   "name": "@renci/apsviz-geostyler",
-  "version": "15.0.21",
+  "version": "0.0.28",
   "description": "Framework for styling geodata",
   "main": "dist/index.js",
   "type": "module",
