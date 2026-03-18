@@ -79,7 +79,7 @@
     "geostyler-mapbox-parser": "^6.0.0",
     "geostyler-openlayers-parser": "^5.0.0",
     "geostyler-qgis-parser": "^3.0.0",
-    "geostyler-sld-parser": "^6.1.0",
+    "geostyler-sld-parser": "^8.4.1",
     "geostyler-style": "^9.0.1",
     "geostyler-wfs-parser": "^3.0.1",
     "lodash": "^4.17.21",
@@ -163,6 +163,7 @@
     "@renci:registry": "https://npm.pkg.github.com"
   },
   "overrides": {
+    "fast-xml-parser": "5.5.6",
     "serialize-javascript": "^7.0.4",
     "webpack-dev-server": "^5.2.1",
     "markdown-to-jsx": "^7.4.0",
