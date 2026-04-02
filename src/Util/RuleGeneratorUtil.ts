@@ -40,11 +40,9 @@ import {
   WellKnownName
 } from 'geostyler-style';
 import SymbolizerUtil from './SymbolizerUtil';
-import {
-  scale as chromaScale,
-  limits as chromaLimits,
-  InterpolationMode
-} from 'chroma-js';
+import chroma, { InterpolationMode } from 'chroma-js';
+const chromaScale = chroma.scale;
+const chromaLimits = chroma.limits;
 import { ClassificationMethod } from 'src/Component/RuleGenerator/ClassificationCombo/ClassificationCombo';
 
 import { Feature, GeoJsonGeometryTypes } from 'geojson';
