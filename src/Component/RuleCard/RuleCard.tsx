@@ -124,7 +124,7 @@ export const RuleCard: React.FC<RuleCardProps> = (props) => {
           maxScaleField?.visibility === false || minScaleField?.visibility === false ? null : (
             <span>
               <>
-                1:{rule.scaleDenominator?.min || '-'} <MinusOutlined /> 1:{rule.scaleDenominator?.max || '-'}
+                1:{String(rule.scaleDenominator?.min ?? '-')} <MinusOutlined /> 1:{String(rule.scaleDenominator?.max ?? '-')}
               </>
             </span>
           )

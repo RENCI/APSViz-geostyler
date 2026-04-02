@@ -83,7 +83,7 @@ export const AttributeCombo: React.FC<AttributeComboProps> = ({
     }
   }, [inputSelectionStart, inputSelectionEnd, value]);
 
-  let options: Object[] = [];
+  let options: React.ReactNode[] = [];
 
   if (data) {
     const attrDefs = data.schema.properties;

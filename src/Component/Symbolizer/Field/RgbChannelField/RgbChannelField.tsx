@@ -125,7 +125,7 @@ export const RgbChannelField: React.FC<RgbChannelFieldProps> = ({
         <SourceChannelNameField
           sourceChannelNames={sourceChannelNames}
           onChange={onRedChannelChange}
-          sourceChannelName={_get(channelSelection, 'redChannel.sourceChannelName')}
+          sourceChannelName={_get(channelSelection, 'redChannel.sourceChannelName') as string}
         />
       </Form.Item>
       <Form.Item
@@ -135,7 +135,7 @@ export const RgbChannelField: React.FC<RgbChannelFieldProps> = ({
         <SourceChannelNameField
           sourceChannelNames={sourceChannelNames}
           onChange={onGreenChannelChange}
-          sourceChannelName={_get(channelSelection, 'greenChannel.sourceChannelName')}
+          sourceChannelName={_get(channelSelection, 'greenChannel.sourceChannelName') as string}
         />
       </Form.Item>
       <Form.Item
@@ -145,7 +145,7 @@ export const RgbChannelField: React.FC<RgbChannelFieldProps> = ({
         <SourceChannelNameField
           sourceChannelNames={sourceChannelNames}
           onChange={onBlueChannelChange}
-          sourceChannelName={_get(channelSelection, 'blueChannel.sourceChannelName')}
+          sourceChannelName={_get(channelSelection, 'blueChannel.sourceChannelName') as string}
         />
       </Form.Item>
     </div>

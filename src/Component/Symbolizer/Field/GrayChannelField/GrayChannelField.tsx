@@ -86,7 +86,7 @@ export const GrayChannelField: React.FC<GrayChannelFieldProps> = ({
         <SourceChannelNameField
           sourceChannelNames={sourceChannelNames}
           onChange={onGrayChannelChange}
-          sourceChannelName={_get(channelSelection, 'grayChannel.sourceChannelName')}
+          sourceChannelName={_get(channelSelection, 'grayChannel.sourceChannelName') as string}
         />
       </Form.Item>
     </div>
