@@ -30,7 +30,8 @@ import React, { BaseSyntheticEvent } from 'react';
 
 import './ColorRampCombo.less';
 
-import { brewer } from 'chroma-js';
+import chroma from 'chroma-js';
+const { brewer } = chroma;
 
 //import { Select } from 'antd';
 import { Select, Option } from '@mui/joy';

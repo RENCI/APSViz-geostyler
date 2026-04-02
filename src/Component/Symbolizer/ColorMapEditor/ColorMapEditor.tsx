@@ -49,7 +49,8 @@ import { ColorMapTypeField } from '../Field/ColorMapTypeField/ColorMapTypeField'
 import RasterUtil from '../../../Util/RasterUtil';
 import { ColorRampCombo } from '../../RuleGenerator/ColorRampCombo/ColorRampCombo';
 import RuleGeneratorUtil from '../../../Util/RuleGeneratorUtil';
-import { brewer } from 'chroma-js';
+import chroma from 'chroma-js';
+const { brewer } = chroma;
 
 import './ColorMapEditor.less';
 

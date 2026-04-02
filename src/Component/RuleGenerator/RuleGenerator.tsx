@@ -38,7 +38,8 @@ import RuleGeneratorUtil from '../../Util/RuleGeneratorUtil';
 import { KindField } from '../Symbolizer/Field/KindField/KindField';
 import { WellKnownNameField } from '../Symbolizer/Field/WellKnownNameField/WellKnownNameField';
 
-import { brewer, InterpolationMode } from 'chroma-js';
+import chroma, { InterpolationMode } from 'chroma-js';
+const { brewer } = chroma;
 import { ColorRampCombo } from './ColorRampCombo/ColorRampCombo';
 import { ColorSpaceCombo } from './ColorSpaceCombo/ColorSpaceCombo';
 import { ColorsPreview } from './ColorsPreview/ColorsPreview';
