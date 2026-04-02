@@ -13,6 +13,15 @@ export default defineConfig({
       fileName: 'geostyler',
     },
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        globals: {
+          'emitter': 'require$$0',
+          'react': 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
+    },
   },
   define: {
     appName: 'GeoStyler'
