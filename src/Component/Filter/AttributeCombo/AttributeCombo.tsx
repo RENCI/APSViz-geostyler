@@ -130,9 +130,7 @@ export const AttributeCombo: React.FC<AttributeComboProps> = ({
               placeholder={locale.placeholder}
               size={size}
             >
-              <>
-                {options}
-              </>
+              {options}
             </Select>
             :
             <Input

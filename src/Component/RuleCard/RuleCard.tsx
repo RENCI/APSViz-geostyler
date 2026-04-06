@@ -134,7 +134,7 @@ export const RuleCard: React.FC<RuleCardProps> = (props) => {
             amountField?.visibility === false ? null : (
               <Text type='secondary'>
                 <span className='gs-rule-card-icon'>Σ</span>
-                {amount !== undefined ? amount : '-'}
+                {amount !== undefined ? String(amount) : '-'}
               </Text>
             )
           }
