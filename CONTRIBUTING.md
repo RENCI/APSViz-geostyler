@@ -144,9 +144,7 @@ git add file2
 git commit -m "feat: added a new feature"
 ```
 
-We are using `commitlint` for ensuring consistent commit messages, and `semantic-release`
-for automated releases. So please make sure that your commit messages follow the patterns
-as described in [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional).
+Please make sure that your commit messages follow the patterns as described in [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional).
 
 ### Pushing changes to GitHub
 

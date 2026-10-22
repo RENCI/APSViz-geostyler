@@ -6,7 +6,7 @@ Make sure to read the general [guidelines for contributions](./CONTRIBUTING.md) 
 
 ## <a name="developing-geostyler-ui-components"></a>Developing GeoStyler UI Components
 
-The easiest way to develop UI components is to use `styleguidist`. Just run `npm run styleguide` and the interactive documenation will be running on `http://localhost:6060`.
+The easiest way to develop UI components is to run `npm run start-dev`, which starts the vite dev server.
 
 For more complex developments such as integrations with different parsers, it might be helpful to `npm link` your local repository to the GeoStyler Demo. If you include your component into one of our high-level components, you will be able to directly see the new components in your browser. To do so, follow these steps:
 
